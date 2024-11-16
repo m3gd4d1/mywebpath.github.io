@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TraversyMedia Web Dev Path</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: 
+            radial-gradient(circle at 10% 20%, rgba(96, 165, 250, 0.03) 0%, transparent 50%),
+            radial-gradient(circle at 90% 80%, rgba(147, 197, 253, 0.03) 0%, transparent 50%);
+        z-index: -2;
+    }
+
+    .geometric-shapes {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    .shape {
+        position: absolute;
+        opacity: 0.04;
+        animation: float 20s infinite ease-in-out;
+    }
+
+    .shape:nth-child(1) {
+        top: 10%;
+        left: 5%;
+        width: 100px;
+        height: 100px;
+        border: 2px solid #60a5fa;
+        transform: rotate(45deg);
+        animation-delay: 0s;
+    }
+
+    .shape:nth-child(2) {
+        top: 70%;
+        right: 10%;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 2px solid #93c5fd;
+        animation-delay: -5s;
+    }
+
+    .shape:nth-child(3) {
+        top: 40%;
+        left: 80%;
+        width: 80px;
+        height: 80px;
+        border: 2px solid #60a5fa;
+        animation-delay: -10s;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translate(0, 0) rotate(0deg);
+        }
+        25% {
+            transform: translate(-20px, 20px) rotate(5deg);
+        }
+        50% {
+            transform: translate(20px, -20px) rotate(-5deg);
+        }
+        75% {
+            transform: translate(20px, 20px) rotate(5deg);
+        }
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    ol {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        background: #2a2a2a;
+        margin: 15px 0;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #3a3a3a;
+    }
+
+    li:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        background: #303030;
+    }
+
+    a {
+        color: #60a5fa;
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 6px;
+        background: rgba(96, 165, 250, 0.1);
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    a:hover {
+        background: rgba(96, 165, 250, 0.2);
+        transform: translateY(-1px);
+    }
+
+    a::after {
+        content: '↗';
+        font-size: 0.8em;
+        opacity: 0.8;
+    }
+
+    input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #3a3a3a;
+        border-radius: 6px;
+        background: #2a2a2a;
+        margin-right: 10px;
+        cursor: pointer;
+        vertical-align: middle;
+        transition: all 0.2s ease;
+    }
+
+    input[type="checkbox"]:checked {
+        background: #60a5fa;
+        border-color: #60a5fa;
+        position: relative;
+    }
+
+    input[type="checkbox"]:checked::after {
+        content: "✓";
+        color: white;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+    }
+
+    .progress-container {
+        width: 100%;
+        background: #2a2a2a;
+        border-radius: 10px;
+        padding: 4px;
+        margin: 20px 0;
+        border: 1px solid #3a3a3a;
+    }
+
+    .progress-bar {
+        height: 20px;
+        background: linear-gradient(90deg, #60a5fa, #93c5fd);
+        border-radius: 8px;
+        width: 0%;
+        transition: width 0.3s ease;
+    }
+
+    .progress-text {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 0.9rem;
+        color: #e0e0e0;
+    }
+</style>
+<body>
+    <div class="geometric-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <div class="container">
+        <div class="progress-container">
+            <div class="progress-bar" id="progress"></div>
+            <div class="progress-text">0% Complete</div>
+        </div>
+        <h1>TraversyMedia Web Dev Path</h1>
+        <ol>
+            <li><input type="checkbox"> YT HTML Crash Course : <a href="https://www.youtube.com/watch?v=UB1O30fR-EE" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT CSS Crash Course : <a href="https://www.youtube.com/watch?v=yfoY53QXEnI" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT CSS3 Animations and Transitions Crash Course : <a href="https://www.youtube.com/watch?v=zHUpx90NerM" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT Create a Website with Video Background : <a href="https://www.youtube.com/watch?v=3-2Pj5hxwrw" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT Creative Agency Website from Scratch : <a href="https://www.youtube.com/watch?v=PHz3ZlZID_k" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT Full Screen Video Background - HTML & CSS : <a href="https://www.youtube.com/watch?v=KcdBOoK3Pfw" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT HTML CSS Mobile UI Layout - CVS clone : <a href="https://www.youtube.com/watch?v=UaYmc1QcWbU" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT Flexbox Crash Course 2022 : <a href="https://www.youtube.com/watch?v=JJSoEo8JSnc" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT CSS Grid Crash Course 2022 : <a href="https://www.youtube.com/watch?v=EFafSYg-PkI" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT Build a Responsive Website - HTML, CSS Grid, Flexbox : <a href="https://www.youtube.com/watch?v=p0bGHP-PXD4" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT SASS Crash Course : <a href="https://www.youtube.com/watch?v=_a5j7KoflTs" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> $$$ Udemy Modern HTML & CSS from the Beginning (12 hours) : <a href="https://www.udemy.com/course/modern-html-css-from-the-beginning/" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT Bootstrap 5 Crash Course : <a href="https://www.youtube.com/watch?v=4sosXZsdy-s" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT Tailwind CSS Crash Course : <a href="https://www.youtube.com/watch?v=UBZdS418L1Q" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> $$$ Udemy Tailwind CSS from Scratch : <a href="https://www.udemy.com/course/tailwind-css-from-scratch/" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT Javascript Crash Course for Beginners : <a href="https://www.youtube.com/watch?v=hdI2bqOjy3c" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT JSON Crash Course : <a href="https://www.youtube.com/watch?v=wI1CWzNtE-M" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT Javascript OOP crash Course : <a href="https://www.youtube.com/watch?v=vDJpGenyHaA" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> $$$ Udemy Modern Javascript from the Beginning (21 hours) : <a href="https://www.udemy.com/course/modern-javascript-from-the-beginning/" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> $$$ Udemy 50 Projects in 50 Days - HTML, CSS, JS : <a href="https://www.udemy.com/course/50-projects-50-days/" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> $$$ Udemy 20 Vanilla Javascript Projects : <a href="https://www.udemy.com/course/web-projects-with-vanilla-javascript/" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT NodeJs Crash Course : <a href="https://www.youtube.com/watch?v=fBNz5xF-Kx4" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT React Crash Course : <a href="https://www.youtube.com/watch?v=w7ejDZ8SWv8" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> $$$ Udemy React Front To Back 2022 : <a href="https://www.udemy.com/course/modern-react-front-to-back/" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> $$$ Udemy MERN Stack Front to Back : <a href="https://www.udemy.com/course/mern-stack-front-to-back/" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> $$$ Udemy MERN eCommerce From Front to Back : <a href="https://www.udemy.com/course/mern-ecommerce/" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT Angular Crash Course : <a href="https://www.youtube.com/watch?v=3qJQdSxNfXk" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> $$$ Udemy Angular Front To Back : <a href="https://www.udemy.com/course/angular-4-front-to-back/" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT VueJS Crash Course : <a href="https://www.youtube.com/watch?v=qZXt1Aom3Cs" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT Git & Github Crash Course for Beginners : <a href="https://www.youtube.com/watch?v=RGOj5yH7evk" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT PHP & PDO Crash Course : <a href="https://www.youtube.com/watch?v=kHV7gOHvNdk" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT MySQL Crash Course : <a href="https://www.youtube.com/watch?v=9ylj9NR0Lcg" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT PHP for Beginners Crash Course : <a href="https://www.youtube.com/watch?v=OK_JCtrrv-c" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT PHP for Absolute Beginners : <a href="https://www.youtube.com/watch?v=93f9_bJQdHk" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT Convert HTML to Wordpress Part 1 Part 2 : <a href="https://www.youtube.com/watch?v=qlA7dputiNc" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> YT Wordpress Theme with Bootstrap Part 1 Part 2 Part 3 Part 4 Part 5 Part 6 Part 7 Part 8 Part 9 Part 10 : <a href="https://www.youtube.com/watch?v=qlA7dputiNc" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> Wordpress Website Build for Beginners : <a href="https://www.youtube.com/watch?v=8AZ8GqW5iak" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> Build a Wordpress Website in 1 Hour : <a href="https://www.youtube.com/watch?v=8AZ8GqW5iak" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+            <li><input type="checkbox"> Build a useful Wordpress Widget plugin : <a href="https://www.youtube.com/watch?v=3uYb34fz2pQ" target="_blank" rel="noopener noreferrer">Watch here</a></li>
+        </ol>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const progressBar = document.getElementById('progress');
+            const progressText = document.querySelector('.progress-text');
+
+            function updateProgress() {
+                const total = checkboxes.length;
+                const checked = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+                const percentage = Math.round((checked / total) * 100);
+                
+                progressBar.style.width = percentage + '%';
+                progressText.textContent = `${percentage}% Complete`;
+            }
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
+            });
+
+            // Initial progress calculation
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
